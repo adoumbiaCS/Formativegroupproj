@@ -1,5 +1,5 @@
 function congrats (text: string) {
-    return "congrats" + text
+    return "congrats" + " " + text + "!"
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (fire.vy == 0) {
