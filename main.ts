@@ -76,7 +76,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . f f f f f f f f f f . . . . 
         . . . f f f . . . f f . . . . . 
         `],
-    500,
+    100,
     characterAnimations.rule(Predicate.MovingLeft)
     )
 })
@@ -159,7 +159,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . f f f f f f f f f f . . 
         . . . . . f f . . . f f f . . . 
         `],
-    500,
+    100,
     characterAnimations.rule(Predicate.MovingRight)
     )
 })
