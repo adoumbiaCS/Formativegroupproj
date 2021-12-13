@@ -1,3 +1,6 @@
+function congrats (text: string) {
+    return "congrats" + text
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (fire.vy == 0) {
         fire.vy = -180
@@ -164,10 +167,14 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
+    congrat = congrats(Name)
+    game.splash(congrat)
     game.over(true)
 })
+let congrat = ""
 let fire: Sprite = null
-let Name = game.askForString("What is your name")
+let Name = ""
+Name = game.askForString("What is your name")
 game.splash("This is an obstacle course! ")
 game.splash("You have to get to the end")
 game.splash("While not falling off!")
