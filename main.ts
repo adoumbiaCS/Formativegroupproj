@@ -7,6 +7,18 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    moving_left()
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.NotMoving))
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.NotMoving))
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    moving_rigth()
+})
+function moving_left () {
     characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.MovingLeft))
     characterAnimations.loopFrames(
     fire,
@@ -82,14 +94,8 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     characterAnimations.rule(Predicate.MovingLeft)
     )
-})
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.NotMoving))
-})
-controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.NotMoving))
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+}
+function moving_rigth () {
     characterAnimations.setCharacterState(fire, characterAnimations.rule(Predicate.MovingRight))
     characterAnimations.loopFrames(
     fire,
@@ -165,7 +171,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     characterAnimations.rule(Predicate.MovingRight)
     )
-})
+}
 scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
     congrat = congrats(Name)
     game.splash(congrat)
