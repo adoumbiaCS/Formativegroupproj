@@ -179,6 +179,25 @@ game.splash("This is an obstacle course! ")
 game.splash("You have to get to the end")
 game.splash("While not falling off!")
 game.splash("Then you win!")
+game.splash("TIP: Eating the pizza will give you a perm speed boost")
+let pizza = sprites.create(img`
+    . . . . . . b b b b . . . . . . 
+    . . . . . . b 4 4 4 b . . . . . 
+    . . . . . . b b 4 4 4 b . . . . 
+    . . . . . b 4 b b b 4 4 b . . . 
+    . . . . b d 5 5 5 4 b 4 4 b . . 
+    . . . . b 3 2 3 5 5 4 e 4 4 b . 
+    . . . b d 2 2 2 5 7 5 4 e 4 4 e 
+    . . . b 5 3 2 3 5 5 5 5 e e e e 
+    . . b d 7 5 5 5 3 2 3 5 5 e e e 
+    . . b 5 5 5 5 5 2 2 2 5 5 d e e 
+    . b 3 2 3 5 7 5 3 2 3 5 d d e 4 
+    . b 2 2 2 5 5 5 5 5 5 d d e 4 . 
+    b d 3 2 d 5 5 5 d d d 4 4 . . . 
+    b 5 5 5 5 d d 4 4 4 4 . . . . . 
+    4 d d d 4 4 4 . . . . . . . . . 
+    4 4 4 4 . . . . . . . . . . . . 
+    `, SpriteKind.Food)
 scene.setBackgroundColor(9)
 fire = sprites.create(img`
     ........................
@@ -210,7 +229,7 @@ controller.moveSprite(fire, 100, 0)
 scene.setTileMap(img`
     . . . . . . . . . . . . . . 5 5 5 5 . . . . . . . . . . . . . . 
     . . . . . . . 5 5 5 5 5 . . . . . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . 5 . . . . . . . . 5 . . . . . . . . . 
+    . . . . . . . . . . . . . 5 . . . . . . . . 3 . . . . . . . . . 
     . . . . . . 5 . . . . . . . . . . . 5 5 . . . . . . . . . . . . 
     . . . . . . . . . . . . . 5 . . . . . . . . . . . 5 . . . . . 2 
     5 5 5 5 5 . . . . . . . 5 . . 5 . . . . . . . . 5 . . . . 5 5 5 
@@ -235,6 +254,24 @@ scene.setTile(5, img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, true)
+scene.setTile(3, img`
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f f f f 
+    `, true)
 scene.setTile(2, img`
     . . . . . . 7 7 7 7 . . . . . . 
     . . . . . 7 7 3 3 3 7 . . . . . 
@@ -258,5 +295,10 @@ scene.cameraFollowSprite(fire)
 game.onUpdate(function () {
     if (fire.y >= scene.screenHeight()) {
         game.over(false)
+    }
+})
+forever(function () {
+    if (fire.overlapsWith(pizza)) {
+        pizza.destroy(effects.spray, 500)
     }
 })
